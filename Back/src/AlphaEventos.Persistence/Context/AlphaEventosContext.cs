@@ -1,7 +1,7 @@
 using AlphaEventos.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace AlphaEventos.Persistence
+namespace AlphaEventos.Persistence.Context
 {
     public class AlphaEventosContext: DbContext
     {

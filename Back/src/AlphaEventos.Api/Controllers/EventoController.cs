@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using AlphaEventos.Domain;
-using AlphaEventos.Persistence;
+using AlphaEventos.Persistence.Context;
 
 namespace AlphaEventos.Api.Controllers
 {
