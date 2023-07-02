@@ -9,9 +9,9 @@ namespace AlphaEventos.Application
 {
     public class EventosService : IEventoService
     {
-        private readonly EventosRepository _eventosRepository;
+        private readonly IEventosRepository _eventosRepository;
         private readonly IRepository _repository;
-        public EventosService(EventosRepository eventosRepository, IRepository repository)
+        public EventosService(IEventosRepository eventosRepository, IRepository repository)
         {
             _repository = repository;
             _eventosRepository = eventosRepository;
@@ -42,7 +42,7 @@ namespace AlphaEventos.Application
                 var eventoResult = await _eventosRepository.getEventoByIdAsync(evento.Id, false);
                 if (eventoResult == null) return null;
 
-                _repository.update(eventoResult);
+                _repository.update(evento);
 
                 if (await _repository.SaveChangeAsync())
                 {
@@ -108,7 +108,7 @@ namespace AlphaEventos.Application
             }
         }
 
-        public async Task<Evento> getEventoByIdAsync(int eventoId, bool includePalestrante = false)
+        public async Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrante = false)
         {
              try
             {

@@ -22,6 +22,17 @@ namespace AlphaEventos.Persistence.Context
          protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<PalestranteEvento>()
                 .HasKey(pe => new {pe.EventoId, pe.PalestranteId});
+
+            modelBuilder.Entity<Evento>()
+            .HasMany(e => e.RedeSociais)
+            .WithOne(rs => rs.Evento)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Palestrante>()
+            .HasMany(p => p.RedeSociais)
+            .WithOne(rs => rs.Palestrante)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
         }
     }
 }

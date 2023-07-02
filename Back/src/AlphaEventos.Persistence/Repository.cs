@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using AlphaEventos.Persistence.Context;
 using AlphaEventos.Persistence.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlphaEventos.Persistence
 {
@@ -11,6 +12,7 @@ namespace AlphaEventos.Persistence
         public Repository(AlphaEventosContext context)
         {
             _context = context;
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
         }
         public void Add<T>(T entity) where T : class

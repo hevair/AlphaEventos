@@ -3,6 +3,7 @@ using System;
 using AlphaEventos.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlphaEventos.Persistence.Migrations
 {
@@ -96,8 +97,8 @@ namespace AlphaEventos.Persistence.Migrations
                     b.Property<string>("MyProperty")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Nome")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Telefone")
                         .HasColumnType("TEXT");
@@ -131,11 +132,11 @@ namespace AlphaEventos.Persistence.Migrations
                     b.Property<int?>("EventoId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("PalestranteId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("String")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("URL")
                         .HasColumnType("TEXT");

@@ -1,5 +1,8 @@
+using AlphaEventos.Application;
+using AlphaEventos.Application.Interfaces;
 using AlphaEventos.Persistence;
 using AlphaEventos.Persistence.Context;
+using AlphaEventos.Persistence.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace AlphaEventos.Api
 {
@@ -23,7 +27,12 @@ namespace AlphaEventos.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
+            services.AddTransient<IEventoService, EventosService>();
+            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IEventosRepository, EventosRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AlphaEventos", Version = "v1" });

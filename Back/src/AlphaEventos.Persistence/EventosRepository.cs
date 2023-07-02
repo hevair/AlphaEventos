@@ -19,7 +19,7 @@ namespace AlphaEventos.Persistence
 
         public async Task<Evento> getEventoByIdAsync(int eventoId, bool includePalestrante = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                     .Include(e => e.Lote)
                     .Include(e => e.RedeSociais);
 
@@ -35,7 +35,7 @@ namespace AlphaEventos.Persistence
 
         public async Task<Evento[]> GetAllEventosAsync(bool includePalestrante = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                     .Include(e => e.Lote)
                     .Include(e => e.RedeSociais);
 
@@ -51,7 +51,7 @@ namespace AlphaEventos.Persistence
         }
         public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrante = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                     .Include(e => e.Lote)
                     .Include(e => e.RedeSociais);
 
